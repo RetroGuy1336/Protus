@@ -11,14 +11,16 @@
 #                   Developed by RetroGuy1336
 
 from banners import random_banners
-
+from config import arguments
 def main():
-    random_banners()
-    print("""
-[ + ]     --[   Protus, Programmable Recon & Offensive Toolkit for Unified Systems   ]
-[ + ] --  -=[   We currently lack an arsenal of offensive security tools :(          ]
-[ + ] -  --=[   ---------------Developed by RetroGuy1336-----------------            ]""")
-    user = input("pts >> ")
+    while True:
+        random_banners()
+        print("""
+    [ + ]     --[   Protus, Programmable Recon & Offensive Toolkit for Unified Systems   ]
+    [ + ] --  -=[   We currently lack an arsenal of offensive security tools :(          ]
+    [ + ] -  --=[   ---------------Developed by RetroGuy1336-----------------            ]""")
+        user = input("pts >> ")
+        arguments(user)
 
 
 if __name__ == "__main__":
