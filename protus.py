@@ -11,7 +11,7 @@
 #                   Developed by RetroGuy1336
 
 from banners import random_banners
-from config import arguments
+from core.config import arguments
 def main():
     while True:
         random_banners()
