@@ -1,5 +1,5 @@
 import argparse
-from modules.parser import main
+from modules.recon.parser import main
 import os
 
 red = '\033[1;31m'
@@ -21,8 +21,7 @@ def arguments(command):
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
     start_parser = subparsers.add_parser('start', help="It starts a module from Protus")
     start_sub = start_parser.add_subparsers(dest="modulo")
-    scanner_parser = start_sub.add_parser("scanner")
-    dns_parser = start_sub.add_parser("dnslookup")
+    recon_parser = start_sub.add_parser("recon")
     db_parser = start_sub.add_parser("dbsearch")
 
     try:
@@ -40,7 +39,7 @@ Description: Protus, The Framework for Pentest is a tool to assist offensive cyb
             print("No")
 
     if args.comando == "start":
-        if args.modulo == "scanner":
+        if args.modulo == "recon":
             main()
     
     if args.comando == "list":
