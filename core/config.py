@@ -1,5 +1,5 @@
 import argparse
-from modules.parserscanner import scannerparser
+from modules.parser import main
 import os
 
 red = '\033[1;31m'
@@ -41,7 +41,7 @@ Description: Protus, The Framework for Pentest is a tool to assist offensive cyb
 
     if args.comando == "start":
         if args.modulo == "scanner":
-            scannerparser()
+            main()
     
     if args.comando == "list":
         if args.type == "payloads":

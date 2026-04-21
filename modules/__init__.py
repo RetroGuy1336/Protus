@@ -1,1 +1,1 @@
-from modules.parserscanner import scannerparser
+from modules.parser import scannerparser
