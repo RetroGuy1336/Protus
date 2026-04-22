@@ -1,8 +1,8 @@
 import argparse
 import os
 import shlex
-from modules.recon.portscanner import scanner
-from modules.recon.dnslookup import dnslookup
+from modules.recon import DNSLookup, PortScanner
+
 
 def main():
     os.system('clear')
@@ -55,7 +55,8 @@ def scannerparser(user_input):
         return
 
     if args.command == "scan":
-        scanner(args)
+        Portscanner = PortScanner()
+        Portscanner.run(args)
 
 def dnsparser(user_input):
     parser = argparse.ArgumentParser(prog="PTS")
@@ -66,4 +67,5 @@ def dnsparser(user_input):
     args = parser.parse_args(shlex.split(user_input))
 
     if args.command == "lookup":
-        dnslookup(args)
+        dns = DNSLookup()
+        dns.run(args)

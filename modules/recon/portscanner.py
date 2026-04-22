@@ -1,4 +1,5 @@
 from scapy.all import *
+import time
 
 stealth_modes = {
     0: 0,
@@ -25,34 +26,38 @@ services = {
     27017: "MongoDB"
 }
 
-ports_ipv4 = []
+class Module:
+    name = "Protus Port Scanner"
+    description = "A port scanner from the Protus Framework"
 
-def scanner(args):
-    host = args.host
-    first_port = args.Fp
-    last_port = args.Lp
-    stealth = args.St
+    def run(self, args):
+        ports_ipv4 = []
 
-    for port in range(first_port, last_port + 1):
-        # Create a SYN packet for the target port
-        pacote = IP(dst=host) / TCP(dport=port, flags="S")
-        # Send the packet and wait for a response
-        resposta = sr1(pacote, timeout=1, verbose=0)
+        host = args.host
+        first_port = args.Fp
+        last_port = args.Lp
+        stealth = args.St
 
-        if resposta is None:
-            ports_ipv4.append(("[ ? ]", port, "Filtered"))
+        for port in range(first_port, last_port + 1):
+            # Create a SYN packet for the target port
+            pacote = IP(dst=host) / TCP(dport=port, flags="S")
+            # Send the packet and wait for a response
+            resposta = sr1(pacote, timeout=1, verbose=0)
 
-        elif resposta.haslayer(TCP):
-            if resposta[TCP].flags == "SA":
-                service_name = services.get(port, "Unknown")
-                ports_ipv4.append(("[ + ] ", port, service_name))
+            if resposta is None:
+                ports_ipv4.append(("[ ? ]", port, "Filtered"))
 
-                send(IP(dst=host)/TCP(dport=port, flags="R"), verbose=0)
+            elif resposta.haslayer(TCP):
+                if resposta[TCP].flags == "SA":
+                    service_name = services.get(port, "Unknown")
+                    ports_ipv4.append(("[ + ] ", port, "Open", service_name))
 
-        else:
-            ports_ipv4.append((port, "Unknown"))
+                    send(IP(dst=host)/TCP(dport=port, flags="R"), verbose=0)
 
-        time.sleep(stealth_modes[stealth])
+            else:
+                ports_ipv4.append((port, "Unknown"))
 
-    for status, port, status2, service in ports_ipv4:
-        print(f"{status} {port} is {status2}  - {service}")
+            time.sleep(stealth_modes[stealth])
+
+        for status, port, status2, service in ports_ipv4:
+            print(f"{status} {port} is {status2}  - {service}")

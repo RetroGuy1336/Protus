@@ -12,6 +12,7 @@
 
 from banners import random_banners
 from core.config import arguments
+
 def main():
     while True:
         random_banners()

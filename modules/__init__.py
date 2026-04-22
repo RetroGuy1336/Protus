@@ -1,1 +1,0 @@
-from modules.recon.parser import scannerparser
