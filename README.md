@@ -106,10 +106,6 @@ Protus/
    pip install -r requirements.txt
    ```
 
-3. **Ensure execute permissions:**
-   ```bash
-   chmod +x protus.py
-   ```
 
 ## Usage
 
@@ -117,7 +113,7 @@ Protus/
 
 Run the main application:
 ```bash
-python3 protus.py
+sudo python3 protus.py
 ```
 
 You will see an interactive menu:
