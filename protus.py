@@ -12,6 +12,7 @@
 
 from banners import random_banners
 from core.config import arguments
+import os
 
 red = '\033[1;31m'
 blue = '\033[1;34m'
@@ -19,6 +20,10 @@ limit = '\033[m'
 
 def main():
     while True:
+        os.system('clear')
+        if os.geteuid() != 0:
+            print("Execute with sudo!")
+            exit()
         print(red)
         random_banners()
         print(limit)
