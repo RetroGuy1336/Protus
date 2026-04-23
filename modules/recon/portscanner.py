@@ -45,7 +45,7 @@ class Module:
             resposta = sr1(pacote, timeout=1, verbose=0)
 
             if resposta is None:
-                ports_ipv4.append(("[ ? ]", port, "Filtered"))
+                ports_ipv4.append(("[ ? ]", port, "is", "Filtered"))
 
             elif resposta.haslayer(TCP):
                 if resposta[TCP].flags == "SA":
@@ -55,9 +55,9 @@ class Module:
                     send(IP(dst=host)/TCP(dport=port, flags="R"), verbose=0)
 
             else:
-                ports_ipv4.append((port, "Unknown"))
+                ports_ipv4.append(("[ ? ]", port, "is", "Unknown"))
 
             time.sleep(stealth_modes[stealth])
 
         for status, port, status2, service in ports_ipv4:
-            print(f"{status} {port} is {status2}  - {service}")
+            print(f"{status} {port} {status2} - {service}")
