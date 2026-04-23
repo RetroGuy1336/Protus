@@ -13,14 +13,21 @@
 from banners import random_banners
 from core.config import arguments
 
+red = '\033[1;31m'
+blue = '\033[1;34m'
+limit = '\033[m'
+
 def main():
     while True:
+        print(red)
         random_banners()
+        print(limit)
         print("""
-    [ + ]     --[   Protus, Programmable Recon & Offensive Toolkit for Unified Systems   ]
-    [ + ] --  -=[   We currently lack an arsenal of offensive security tools :(          ]
-    [ + ] -  --=[   ---------------Developed by RetroGuy1336-----------------            ]""")
-        user = input("pts >> ")
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[ + ]     --[   Protus, Programmable Recon & Offensive Toolkit for Unified Systems   ]
+[ + ] --  -=[   We have only a Port Scanner and a DNS Lookup for attacks D:          ]
+[ + ] -  --=[   ---------------Developed by RetroGuy1336-----------------            ]""")
+        user = input(blue + "pts >> " + limit)
         arguments(user)
 
 
