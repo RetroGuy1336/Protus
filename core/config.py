@@ -34,7 +34,7 @@ def arguments(command):
     if args.comando == 'show':
         print("""
 Protus, The Framework for Pentest
-Version: 0.1v
+Version: 0.1.2v
 Description: Protus, The Framework for Pentest is a tool to assist offensive cybersecurity engineers in their work""")
         if args.more:
             print("No")

@@ -75,19 +75,6 @@ The integrated payload management system provides:
 - Support for vulnerability queries with parameter-based search
 - Streamlined command-line interface for quick exploit research
 
-**Usage:**
-```
-pts >> start exploitdb
-PTS_ExploitDB >> exploitdb --search <vulnerability_name>
-```
-
-Example:
-```
-PTS_ExploitDB >> exploitdb --search "Apache RCE"
-```
-
-This will automatically open your default web browser with the Exploit-DB search results for the specified vulnerability.
-
 ## Architecture
 
 ```
@@ -125,10 +112,15 @@ Protus/
 
 1. **Clone or download the repository:**
    ```bash
-   cd /path/to/Protus
+   git clone https://github.com/RetroGuy1336/Protus.git
    ```
 
-2. **Install dependencies:**
+2. **Navigate to the project directory:**
+   ```bash
+   cd Protus
+   ```
+
+3. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
@@ -153,7 +145,6 @@ pts >>
 #### View Framework Information
 ```bash
 pts >> show
-pts >> show --more
 ```
 
 Displays version information and framework description.
