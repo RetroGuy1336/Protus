@@ -19,11 +19,11 @@ blue = '\033[1;34m'
 limit = '\033[m'
 
 def main():
+    os.system('clear')
+    if os.geteuid() != 0:
+        print("Execute with sudo!")
+        exit()
     while True:
-        os.system('clear')
-        if os.geteuid() != 0:
-            print("Execute with sudo!")
-            exit()
         print(red)
         random_banners()
         print(limit)
