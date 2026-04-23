@@ -66,6 +66,28 @@ The integrated payload management system provides:
   - Context-sensitive XSS wrappers (HTML attributes, etc.)
   - On-demand payload streaming
 
+### 🔎 Exploit Database Search
+
+#### **ExploitDB Integration**
+- Direct search integration with Exploit-DB (https://www.exploit-db.com)
+- Real-time vulnerability and exploit lookup
+- Automated web browser integration for instant access to exploit details
+- Support for vulnerability queries with parameter-based search
+- Streamlined command-line interface for quick exploit research
+
+**Usage:**
+```
+pts >> start exploitdb
+PTS_ExploitDB >> exploitdb --search <vulnerability_name>
+```
+
+Example:
+```
+PTS_ExploitDB >> exploitdb --search "Apache RCE"
+```
+
+This will automatically open your default web browser with the Exploit-DB search results for the specified vulnerability.
+
 ## Architecture
 
 ```
@@ -77,6 +99,9 @@ Protus/
 │   ├── config.py          # Command parser and configuration
 │   └── payloads.py        # Payload engine and mutation logic
 ├── modules/
+│   ├── exploitdb/
+│   │   ├── exploitdb.py   # Exploit-DB search module
+│   │   └── parser.py      # Argument parsing for exploitdb tool
 │   └── recon/
 │       ├── dnslookup.py   # DNS resolution module
 │       ├── portscanner.py # TCP port scanning module
@@ -90,9 +115,11 @@ Protus/
 ## Installation
 
 ### Prerequisites
+- The OS must be Linux-based (Ubuntu, Kali, etc.) for optimal compatibility with Scapy and raw socket operations
 - Python 3.10+
 - pip (Python package manager)
 - Root/Administrator privileges (required for raw packet operations with Scapy)
+- Internet connection (for downloading dependencies and potential future updates)
 
 ### Setup
 
@@ -180,6 +207,32 @@ This will:
 - Remove duplicate addresses
 - Handle resolution errors gracefully
 
+#### Access Exploit Database Search
+
+```bash
+pts >> start exploitdb
+```
+
+This opens the Exploit-DB search submenu where you can search for vulnerabilities and exploits.
+
+##### **ExploitDB Search**
+
+Command format:
+```
+exploitdb --search <vulnerability_or_exploit_name>
+```
+
+Example:
+```
+PTS_ExploitDB >> exploitdb --search RCE Apache Struts
+```
+
+This will:
+- Search the Exploit-DB database for matching vulnerabilities
+- Open your default web browser with detailed exploit information
+- Display the search URL in the console
+- Allow you to browse exploit details, POC code, and metadata
+
 ## How It Works
 
 ### Reconnaissance Workflow
@@ -222,12 +275,13 @@ Protus uses ANSI color codes for enhanced readability:
 ## Future Enhancements
 
 - Additional reconnaissance modules (WHOIS lookup, traceroute, etc.)
-- Database search functionality
 - Automated vulnerability detection
 - Export results in multiple formats (JSON, CSV, HTML)
+- Advanced filtering for ExploitDB search results
 - Multi-threading for faster scans
 - GUI interface option
 - Proxy support for anonymized scanning
+- Local exploit database caching for offline searches
 
 ## Contributing
 
@@ -239,6 +293,6 @@ This project is provided as-is for educational and authorized security testing p
 
 ---
 
-**Version:** 0.1  
+**Version:** 0.1.2v  
 **Developer:** RetroGuy1336  
 **Last Updated:** 2026

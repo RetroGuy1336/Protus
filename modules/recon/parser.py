@@ -4,7 +4,7 @@ import shlex
 from modules.recon import DNSLookup, PortScanner
 
 
-def main():
+def ParserRecon():
     os.system('clear')
     print("Starting the Protus Recon... ")
 
@@ -59,7 +59,7 @@ def scannerparser(user_input):
         Portscanner.run(args)
 
 def dnsparser(user_input):
-    parser = argparse.ArgumentParser(prog="PTS")
+    parser = argparse.ArgumentParser(prog="Protus DNSLookup")
 
     parser.add_argument("command")  
     parser.add_argument("-u", "--url", required=True)

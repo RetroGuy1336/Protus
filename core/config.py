@@ -1,5 +1,6 @@
 import argparse
-from modules.recon.parser import main
+from modules.recon.parser import ParserRecon
+from modules.exploitdb.parser import ExploitDB_Parser
 import os
 
 red = '\033[1;31m'
@@ -22,7 +23,7 @@ def arguments(command):
     start_parser = subparsers.add_parser('start', help="It starts a module from Protus")
     start_sub = start_parser.add_subparsers(dest="modulo")
     recon_parser = start_sub.add_parser("recon")
-    db_parser = start_sub.add_parser("dbsearch")
+    db_parser = start_sub.add_parser("exploitdb")
 
     try:
         args = parser.parse_args(command.split())
@@ -40,7 +41,9 @@ Description: Protus, The Framework for Pentest is a tool to assist offensive cyb
 
     if args.comando == "start":
         if args.modulo == "recon":
-            main()
+            ParserRecon()
+        if args.modulo == "exploitdb":
+            ExploitDB_Parser()
     
     if args.comando == "list":
         if args.type == "payloads":
