@@ -50,7 +50,7 @@ class Module:
             elif resposta.haslayer(TCP):
                 if resposta[TCP].flags == "SA":
                     service_name = services.get(port, "Unknown")
-                    ports_ipv4.append(("[ + ] ", port, "Open", service_name))
+                    ports_ipv4.append(("[ + ]", port, "is Open", service_name))
 
                     send(IP(dst=host)/TCP(dport=port, flags="R"), verbose=0)
 
