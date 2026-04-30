@@ -1,7 +1,8 @@
 import argparse
 from modules.recon.parser import ParserRecon
 from modules.exploitdb.parser import ExploitDB_Parser
-import os
+from payloads.parser import attack_parser
+import pathlib
 
 red = '\033[1;31m'
 limit = '\033[m'
@@ -26,6 +27,10 @@ def arguments(command):
     start_sub = start_parser.add_subparsers(dest="modulo")
     recon_parser = start_sub.add_parser("recon")
     db_parser = start_sub.add_parser("exploitdb")
+
+    use_parser = subparsers.add_parser("use", help="Use payloads, exploits, enconders and more")
+    use_sub = use_parser.add_subparsers(dest="attack")
+    exploits_parser = use_sub.add_parser("exploit")
 
     try:
         args = parser.parse_args(command.split())
@@ -57,26 +62,32 @@ Description: Protus, The Framework for Pentest is a tool to assist offensive cyb
     if args.comando == "list":
 
         if args.type == "payloads":
-            pathway = "payloads"
+            pathway = pathlib.Path("payloads")
+            
 
-            files = os.listdir(pathway)
             print("-=" * 20)
             print(red)
-            for file in files:
+            for file in pathway.rglob("*.py"):
                 print(file)
+            for f in pathway.iterdir():
+                if f.is_file():
+                    print(f)
             print(limit)
             print("-=" * 20)
 
         elif args.type == "modules":
-            pathway = "modules"
+            pathway = pathlib.Path("modules")
 
-            files = os.listdir(pathway)
             print("-=" * 20)
             print(red)
-            for file in files:
+            for file in pathway.iterdir():
                 print(file)
             print(limit)
             print("-=" * 20)
+
+    if args.comando == "use":
+        if args.attack == "exploit":
+            attack_parser()
 
 
         
